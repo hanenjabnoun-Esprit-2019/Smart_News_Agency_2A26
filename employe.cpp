@@ -4,7 +4,7 @@ employe::employe()
 {
 
 }
-employe::employe (int id , QString nom ,QString prenom ,QString role , int salaire ,QString profession , int numero ){
+employe:: employe (int id , QString nom ,QString prenom ,QString role , int salaire ,QString profession , int numero , int id_dep ){
 
     this->id=id ;
     this->nom=nom ;
@@ -13,11 +13,12 @@ employe::employe (int id , QString nom ,QString prenom ,QString role , int salai
     this->salaire=salaire ;
     this->profession=profession  ;
     this->numero =numero ;
+    this->id_dep=id_dep;
 }
 bool employe::ajouter_e()
 {
     QSqlQuery q ;
-    q.prepare("insert into employe values (:id , :nom ,:prenom , :role , :salaire ,:profession , :numero )");
+    q.prepare("insert into employe values (:id , :nom ,:prenom , :role , :salaire ,:profession , :numero ,:id_dep )");
     q.bindValue(":id",id);
         q.bindValue(":nom",nom);
             q.bindValue(":prenom",prenom);
@@ -25,6 +26,7 @@ bool employe::ajouter_e()
                     q.bindValue(":salaire",salaire);
                         q.bindValue(":profession",profession);
                            q.bindValue(":numero",numero);
+                              q.bindValue(":id_dep", id_dep);
                           return  q.exec();
 }
 bool employe::supprimer_e(int id)

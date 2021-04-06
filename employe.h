@@ -8,7 +8,7 @@ class employe
 {
 public:
     employe();
-    employe (int , QString ,QString, QString ,int , QString , int);
+    employe (int , QString ,QString, QString ,int , QString , int, int);
    bool ajouter_e();
    bool supprimer_e(int);
    QSqlQueryModel * afficher_e();
@@ -24,6 +24,7 @@ private:
     int salaire ;
     QString profession ;
     int numero ;
+    int id_dep
 
 };
 

@@ -31,7 +31,7 @@ void MainWindow::on_pushButton_clicked() //ajout_emp
        QString profession =ui->lineEdit_6->text();
        int numero=ui->lineEdit_7->text().toInt();
        int id_dep=ui->lineEdit_24->text().toInt ();
-       employe  e (id , nom , prenom , role , salaire ,profession , numero );
+       employe  e (id , nom , prenom , role , salaire ,profession , numero ,id_dep);
        bool test= e.ajouter_e();
        if(test)
 
