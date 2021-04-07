@@ -14,7 +14,7 @@ public:
     bool supprimer_i(int);
     QSqlQueryModel *afficher_i();
     QSqlQueryModel *afficher_i_tri();
-QSqlQueryModel *afficher_i_rech(int);
+QSqlQueryModel *afficher_i_rech(QString,QString);
     bool modifier_i(int);
     bool rechercher_i(int);
     QSqlQueryModel *stat();

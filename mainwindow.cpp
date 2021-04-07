@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include "smtp.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -109,8 +111,9 @@ else
 
 void MainWindow::on_pushButton_7_clicked() // recherche avancé
 {
-    int id=ui->lineEdit_14->text().toInt();
-     ui->tableView->setModel(tmpi.afficher_i_rech(id));
+    QString rech=ui->lineEdit_14->text();
+    QString selon=ui->comboBox->currentText();
+     ui->tableView->setModel(tmpi.afficher_i_rech(selon,rech));
 
     }
 
@@ -120,8 +123,10 @@ void MainWindow::on_pushButton_9_clicked() //ajouter 2
     int id=ui->lineEdit_15->text().toInt();
     QString destinataire=ui->lineEdit_16->text();
     QString type=ui->lineEdit_17->text();
+    QString description=ui->lineEdit_23->text();
+    QString etat=ui->lineEdit_24->text();
 
-    avis a (id,destinataire,type);
+    avis a (id,destinataire,type,description,etat);
     bool test=a.ajout_a();
     if(test)
     { ui->tableView_2->setModel(tmpa.afficher_a());
@@ -168,7 +173,9 @@ void MainWindow::on_pushButton_12_clicked() //modifier 2
     int id=ui->lineEdit_19->text().toInt();
     QString destinataire=ui->lineEdit_20->text();
     QString type=ui->lineEdit_18->text();
-    avis a (id,destinataire,type);
+    QString description=ui->lineEdit_25->text();
+    QString etat=ui->lineEdit_26->text();
+    avis a (id,destinataire,type,description,etat);
     if(tmpa.rechercher_a(id)){
         bool test=a.modifier_a(id);
         if(test)
@@ -254,4 +261,11 @@ void MainWindow::on_pushButton_11_clicked() //suppression avancé avis
                     QObject::tr("failed.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
 
+}
+
+void MainWindow::on_pushButton_16_clicked() //mailing
+{
+    Smtp* smtp = new Smtp("zakaria.chelbi@esprit.tn", "191JMT3490", "smtp.gmail.com", 465);
+        connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+        smtp->sendMail("zakaria.chelbi@esprit.tn",ui->lineEdit_22->text(), ui->lineEdit_28->text(),ui->lineEdit_27->text());
 }

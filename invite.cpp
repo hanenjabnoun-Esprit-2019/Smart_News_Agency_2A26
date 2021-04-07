@@ -68,10 +68,10 @@ QSqlQueryModel *invite::afficher_i_tri(){
 
     return model;
 }
-QSqlQueryModel *invite::afficher_i_rech(int id){
+QSqlQueryModel *invite::afficher_i_rech(QString selon,QString rech){
     QSqlQueryModel* model=new QSqlQueryModel();
-    QString res=QString::number(id);
-    model->setQuery("select * from invites where id like '"+res+"%'");
+
+    model->setQuery("select * from invites where "+selon+" like '"+rech+"%'");
     return model;
 }
 QSqlQueryModel * invite::stat()

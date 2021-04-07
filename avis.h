@@ -10,7 +10,7 @@ class avis
 {
 public:
     avis();
-    avis(int,QString,QString);
+    avis(int,QString,QString,QString,QString);
     bool ajout_a();
     bool supprimer_a(int);
     QSqlQueryModel *afficher_a();
@@ -21,6 +21,8 @@ private:
     int id;
    QString destinataire;
    QString type;
+   QString description;
+   QString etat;
 
 };
 

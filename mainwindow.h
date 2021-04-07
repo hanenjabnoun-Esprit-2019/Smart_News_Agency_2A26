@@ -5,6 +5,7 @@
 #include "invite.h"
 #include "avis.h"
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -39,6 +40,8 @@ private slots:
     void on_pushButton_19_clicked();
 
     void on_pushButton_11_clicked();
+
+    void on_pushButton_16_clicked();
 
 private:
     Ui::MainWindow *ui;
