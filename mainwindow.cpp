@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QPixmap>
+#include "smtp.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -8,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->tableView_2->setModel(tmpm.afficher());
      ui->tableView->setModel(tmpm2.afficher());
+
 }
 
 MainWindow::~MainWindow()
@@ -231,4 +234,18 @@ void MainWindow::on_pushButton_14_clicked()
 void MainWindow::on_pushButton_6_clicked()
 {
      ui->tableView_2->setModel(tmpm.afficher());
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    QString selon=ui->comboBox->currentText();
+    QString rech=ui->lineEdit_11->text();
+     ui->tableView->setModel(tmpm2.afficherRech(selon,rech));
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    Smtp* smtp = new Smtp("mariem.gnaoui@esprit.tn", "191JFT1245", "smtp.gmail.com", 465);
+        connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+        smtp->sendMail("mariem.gnaoui@esprit.tn",ui->lineEdit_34->text(), ui->lineEdit_32->text(),ui->lineEdit_33->text());
 }

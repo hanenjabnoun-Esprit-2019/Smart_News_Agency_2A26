@@ -70,3 +70,10 @@ bool sponsors::rechercher(int id)
     q.exec();
     return q.next();
 }
+QSqlQueryModel* sponsors::afficherRech(QString selon , QString rech)
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("select * from sponsors where "+selon+" like '"+rech+"%'");
+    return model;
+
+}

@@ -13,7 +13,76 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QLabel
+{
+color:blue;
+front-family:century-gothic;
+font-size:12px;
+}
+QPushButton
+{
+font-family:century-gothic;
+background-color:rgb(145,200,241);
+border-radius:5px;
+}
+QLineEdit
+{
+font-family:century-gothic;
+background:transparent;
+border:none;
+border-bottom:2px solid #717072;
+}
+QPushButton:hover
+{
+color:#333;
+background:#49ebff;
+background:rgb(251,187,200,241);
+}
+QTableView
+{
+background:#333;
+background:rgba(0,0,0,0.4);
+border-radius:15px;
+}
+QMainWindow
+{background:rgb(6,184,233);
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QLabel
+{
+color:red;
+front-family:century-gothic;
+font-size:12px;
+}
+QPushButton
+{
+font-family:century-gothic;
+background-color:rgb(145,200,241);
+border-radius:5px;
+}
+QLineEdit
+{
+font-family:century-gothic;
+background:transparent;
+border:none;
+border-bottom:2px solid #717072;
+}
+QPushButton:hover
+{
+color:#333;
+background:#49ebff;
+background:rgb(251,187,200,241);
+}
+QTableView
+{
+background:#333;
+background:rgba(0,0,0,0.4);
+border-radius:15px;
+}</string>
+   </property>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
@@ -24,7 +93,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -40,7 +109,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -295,6 +364,54 @@
            <height>192</height>
           </rect>
          </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_7">
+         <property name="geometry">
+          <rect>
+           <x>170</x>
+           <y>40</y>
+           <width>93</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>rechercher</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_11">
+         <property name="geometry">
+          <rect>
+           <x>280</x>
+           <y>40</y>
+           <width>113</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>40</y>
+           <width>81</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>id</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>nom</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>type</string>
+          </property>
+         </item>
         </widget>
        </widget>
       </widget>
@@ -600,8 +717,8 @@
        <widget class="QGroupBox" name="groupBox_3">
         <property name="geometry">
          <rect>
-          <x>90</x>
-          <y>60</y>
+          <x>80</x>
+          <y>80</y>
           <width>801</width>
           <height>201</height>
          </rect>
@@ -609,26 +726,6 @@
         <property name="title">
          <string>mailing</string>
         </property>
-        <widget class="QTextEdit" name="textEdit">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>30</y>
-           <width>301</width>
-           <height>141</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineEdit_13">
-         <property name="geometry">
-          <rect>
-           <x>402</x>
-           <y>30</y>
-           <width>141</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
         <widget class="QLabel" name="label_13">
          <property name="geometry">
           <rect>
@@ -668,6 +765,62 @@
           <string>annuler</string>
          </property>
         </widget>
+        <widget class="QLineEdit" name="lineEdit_32">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>30</y>
+           <width>113</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_33">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>80</y>
+           <width>113</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_11">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>40</y>
+           <width>55</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>objet</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_33">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>90</y>
+           <width>55</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>contenu</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_34">
+         <property name="geometry">
+          <rect>
+           <x>410</x>
+           <y>30</y>
+           <width>113</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>
@@ -686,7 +839,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_8">
        <attribute name="title">

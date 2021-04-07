@@ -14,6 +14,7 @@ public:
     QSqlQueryModel* afficher();
     bool modifier(int);
     bool rechercher(int);
+    QSqlQueryModel* afficherRech(QString selon , QString rech);
 private:
     int id;
     QString nom;
