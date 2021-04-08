@@ -42,7 +42,7 @@ QSqlQueryModel* equipement::afficher()
 bool equipement::modifier(int id)
 {
     QSqlQuery q;
-    q.prepare("update equipement set nom=:nom,composant=:composant,nombre=:nombre,numero=:numero");
+    q.prepare("update equipement set nom=:nom,composant=:composant,nombre=:nombre,numero=:numero where id=:id");
     q.bindValue(":id",id);
      q.bindValue(":nom",nom);
       q.bindValue(":composant",composant);

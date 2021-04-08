@@ -4,6 +4,10 @@
 #include <QMainWindow>
 #include "maintenance.h"
 #include "equipement.h"
+#include <QTextStream>
+#include <QFileDialog>
+#include <QtPrintSupport/QPrinter>
+#include <QTextDocument>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +35,14 @@ private slots:
     void on_pushButton_6_clicked();
 
     void on_pushButton_5_clicked();
+
+    void on_pushButton_16_clicked();
+
+    void on_pushButton_12_clicked();
+
+    void on_pushButton_24_clicked();
+
+    void on_pushButton_25_clicked();
 
 private:
     Ui::MainWindow *ui;

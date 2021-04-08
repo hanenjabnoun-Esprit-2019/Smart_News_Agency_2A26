@@ -4,7 +4,7 @@ maintenance::maintenance()
 {
 
 }
-maintenance::maintenance(int id,QString personnel,QString type,QString outil_necc,int num,QString date,float prix,int etat)
+maintenance::maintenance(int id,QString personnel,QString type,QString outil_necc,int num,QString date,int prix,int etat)
 {
     this->id=id;
     this->personnel=personnel;
@@ -18,7 +18,7 @@ maintenance::maintenance(int id,QString personnel,QString type,QString outil_nec
 bool maintenance::ajouter()
 {
     QSqlQuery q;
-    q.prepare("insert into MAINTENANCE values(:id,:personnel,:type,:outil_necc,:num,:date,:prix,:etat)");
+    q.prepare("insert into maintenance  values(:id,:personnel,:type,:outil_necc,:num,:date,:prix,:etat)");
     q.bindValue(":id",id);
      q.bindValue(":personnel",personnel);
       q.bindValue(":type",type);
@@ -64,4 +64,10 @@ bool maintenance::rechercher(int id)
     q.bindValue(":id",id);
     q.exec();
     return q.next();
+}
+QSqlQueryModel* maintenance::afficherRech(QString selon,QString rech)
+{
+    QSqlQueryModel* model=new QSqlQueryModel();
+    model->setQuery("select * from maintenance where "+selon+" like '"+rech+"%'");
+    return model;
 }
