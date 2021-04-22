@@ -1,14 +1,37 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
-
+#include <QPixmap>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+ /*   QPixmap pix1("C:/Users/Asus/Desktop/baack.jpg");
+       ui->label_13->setPixmap(pix1);*/
+
     ui->tableView->setModel(tmpm.afficher());
     ui->tableView_2->setModel(tmpm2.afficher());
+    QPieSeries *series = new QPieSeries();
+       QSqlQuery q("select type,count(*) from maintenance group by type");
+
+
+        while(q.next())
+        {series->append(q.value(0).toString()+": "+q.value(1).toString(),q.value(1).toInt());}
+       QChart *chart = new QChart();
+       chart->addSeries(series);
+       chart->setTitle("Statistiques");
+       chart->setBackgroundBrush(Qt::transparent);
+       QChartView *chartview = new QChartView(chart);
+       chartview->setRenderHint(QPainter::Antialiasing);
+       chartview->setParent(ui->horizontalFrame);
+       chartview->resize(400,300);
+
+       chart->setAnimationOptions(QChart::AllAnimations);
+       chart->legend()->setVisible(true);
+       chart->legend()->setAlignment(Qt::AlignRight);
+       series->setLabelsVisible(true);
+
 
 
 }
@@ -305,4 +328,42 @@ void MainWindow::on_pushButton_25_clicked()
     QString selon=ui->comboBox->currentText();
     QString rech=ui->lineEdit_40->text();
      ui->tableView->setModel(tmpm.afficherRech(selon,rech));
+}
+
+void MainWindow::on_pushButton_23_clicked()
+{
+    QTableView *table;
+           table = ui->tableView_2;
+
+           QString filters("CSV files (*.csv);;All files (*.*)");
+           QString defaultFilter("CSV files (*.csv)");
+           QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
+                              filters, &defaultFilter);
+           QFile file(fileName);
+
+           QAbstractItemModel *model =  table->model();
+           if (file.open(QFile::WriteOnly | QFile::Truncate)) {
+               QTextStream data(&file);
+               QStringList strList;
+               for (int i = 0; i < model->columnCount(); i++) {
+                   if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+                       strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+                   else
+                       strList.append("");
+               }
+               data << strList.join(";") << "\n";
+               for (int i = 0; i < model->rowCount(); i++) {
+                   strList.clear();
+                   for (int j = 0; j < model->columnCount(); j++) {
+
+                       if (model->data(model->index(i, j)).toString().length() > 0)
+                           strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+                       else
+                           strList.append("");
+                   }
+                   data << strList.join(";") + "\n";
+               }
+               file.close();
+               QMessageBox::information(this,"Exporter To Excel","Exporter En Excel Avec Succées ");
+           }
 }

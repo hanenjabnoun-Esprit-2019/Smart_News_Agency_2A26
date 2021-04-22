@@ -8,6 +8,10 @@
 #include <QFileDialog>
 #include <QtPrintSupport/QPrinter>
 #include <QTextDocument>
+#include <QtCharts>
+#include <QChartView>
+#include <QPieSeries>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -43,6 +47,8 @@ private slots:
     void on_pushButton_24_clicked();
 
     void on_pushButton_25_clicked();
+
+    void on_pushButton_23_clicked();
 
 private:
     Ui::MainWindow *ui;

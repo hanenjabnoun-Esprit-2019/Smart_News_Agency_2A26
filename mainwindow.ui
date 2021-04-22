@@ -6,78 +6,1289 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>963</width>
-    <height>600</height>
+    <width>979</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QLabel
+   <string notr="true">
+
+/*-----QWidget-----*/
+QWidget
 {
-color:red;
-front-family:century-gothic;
-font-size:12px;
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(102, 115, 140, 255),stop:1 rgba(56, 63, 77, 255));
+	color: #ffffff;
+	border-color: #051a39;
+
 }
+
+
+/*-----QLabel-----*/
+QLabel
+{
+	background-color: transparent;
+	color: #ffffff;
+	font-weight: bold;
+
+}
+
+
+QLabel::disabled
+{
+	background-color: transparent;
+	color: #898988;
+
+}
+
+
+/*-----QMenuBar-----*/
+QMenuBar
+{
+	background-color: #484c58;
+	color: #ffffff;
+	border-color: #051a39;
+	font-weight: bold;
+
+}
+
+
+QMenuBar::disabled
+{
+	background-color: #404040;
+	color: #898988;
+	border-color: #051a39;
+
+}
+
+
+QMenuBar::item
+{
+    background-color: transparent;
+
+}
+
+
+QMenuBar::item:selected
+{
+    background-color: #c4c5c3;
+	color: #000000;
+    border: 1px solid #000000;
+
+}
+
+
+QMenuBar::item:pressed
+{
+    background-color: #979796;
+    border: 1px solid #000;
+    margin-bottom: -1px;
+    padding-bottom: 1px;
+
+}
+
+
+/*-----QMenu-----*/
+QMenu
+{
+    background-color: #c4c5c3;
+    border: 1px solid;
+    color: #000000;
+	font-weight: bold;
+
+}
+
+
+QMenu::separator
+{
+    height: 1px;
+    background-color: #363942;
+    color: #ffffff;
+    padding-left: 4px;
+    margin-left: 10px;
+    margin-right: 5px;
+
+}
+
+
+QMenu::item
+{
+    min-width : 150px;
+    padding: 3px 20px 3px 20px;
+
+}
+
+
+QMenu::item:selected
+{
+    background-color: #363942;
+    color: #ffffff;
+
+}
+
+
+QMenu::item:disabled
+{
+    color: #898988;
+}
+
+
+/*-----QToolTip-----*/
+QToolTip
+{
+	background-color: #bbbcba;
+	color: #000000;
+	border-color: #051a39;
+	border : 1px solid #000000;
+	border-radius: 2px;
+
+}
+
+
+/*-----QPushButton-----*/
 QPushButton
 {
-font-family:century-gothic;
-background-color:rgb(145,200,241);
-border-radius:5px;
+	background-color: qlineargradient(spread:repeat, x1:0.486, y1:0, x2:0.505, y2:1, stop:0.00480769 rgba(170, 0, 0, 255),stop:1 rgba(122, 0, 0, 255));
+	color: #ffffff;
+	font-weight: bold;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 3px;
+	border-color: #051a39;
+	padding: 5px;
+
 }
+
+
+QPushButton::disabled
+{
+	background-color: #404040;
+	color: #656565;
+	border-color: #051a39;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #9c0000;
+	color: #ffffff;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 3px;
+	border-color: #051a39;
+	padding: 5px;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #880000;
+	color: #ffffff;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 3px;
+	border-color: #000000;
+	padding: 5px;
+
+}
+
+
+/*-----QToolButton-----*/
+QToolButton 
+{
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(177, 181, 193, 255),stop:1 rgba(159, 163, 174, 255));
+	color: #ffffff;
+	font-weight: bold;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 3px;
+	border-color: #051a39;
+	padding: 5px;
+
+}
+
+
+QToolButton::disabled
+{
+	background-color: #404040;
+	color: #656565;
+	border-color: #051a39;
+
+}
+
+
+QToolButton::hover
+{
+	background-color: #9fa3ae;
+	color: #ffffff;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 3px;
+	border-color: #051a39;
+	padding: 5px;
+
+}
+
+
+QToolButton::pressed
+{
+	background-color: #7b7e86;
+	color: #ffffff;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 3px;
+	border-color: #000000;
+	padding: 5px;
+
+}
+
+
+/*-----QComboBox-----*/
+QComboBox
+{
+    background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(118, 118, 118, 255),stop:1 rgba(70, 70, 70, 255));
+    border: 1px solid #333333;
+    border-radius: 3px;
+    padding-left: 6px;
+    color: lightgray;
+	font-weight: bold;
+    height: 20px;
+
+}
+
+
+QComboBox::disabled
+{
+	background-color: #404040;
+	color: #656565;
+	border-color: #051a39;
+
+}
+
+
+QComboBox:hover
+{
+    background-color: #646464;
+
+}
+
+
+QComboBox:on
+{
+    background-color: #979796;
+	color: #000000;
+
+}
+
+
+QComboBox QAbstractItemView
+{
+    background-color: #c4c5c3;
+    color: #000000;
+    border: 1px solid black;
+    selection-background-color: #363942;
+    selection-color: #ffffff;
+    outline: 0;
+
+}
+
+
+QComboBox::drop-down
+{
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; 
+    border-top-right-radius: 3px; 
+    border-bottom-right-radius: 3px;
+
+}
+
+
+QComboBox::down-arrow
+{
+    image: url(://arrow-down.png);
+    width: 8px;
+    height: 8px;
+}
+
+
+/*-----QSpinBox &amp; QDoubleSpinBox &amp; QDateTimeEdit-----*/
+QSpinBox, 
+QDoubleSpinBox,
+QDateTimeEdit
+{
+	background-color: #000000;
+	color: #00ff00;
+	font-weight: bold;
+	border: 1px solid #333333;
+	padding : 4px;
+
+}
+
+
+QSpinBox::disabled, 
+QDoubleSpinBox::disabled,
+QDateTimeEdit::disabled
+{
+	background-color: #404040;
+	color: #656565;
+	border-color: #051a39;
+
+}
+
+
+QSpinBox:hover, 
+QDoubleSpinBox::hover,
+QDateTimeEdit::hover
+{
+    border: 1px solid #00ff00;
+
+}
+
+
+QSpinBox::up-button, QSpinBox::down-button,
+QDoubleSpinBox::up-button, QDoubleSpinBox::down-button,
+QDateTimeEdit::up-button, QDateTimeEdit::down-button
+{
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(118, 118, 118, 255),stop:1 rgba(70, 70, 70, 255));
+    border: 0px solid #333333;
+
+}
+
+
+QSpinBox::disabled, 
+QDoubleSpinBox::disabled,
+QDateTimeEdit::disabled
+{
+	background-color: #404040;
+	color: #656565;
+	border-color: #051a39;
+
+}
+
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover,
+QDoubleSpinBox::up-button:hover, QDoubleSpinBox::down-button:hover,
+QDateTimeEdit::up-button:hover, QDateTimeEdit::down-button:hover
+{
+	background-color: #646464;
+    border: 1px solid #333333;
+
+
+}
+
+
+QSpinBox::up-button:disabled, QSpinBox::down-button:disabled,
+QDoubleSpinBox::up-button:disabled, QDoubleSpinBox::down-button:disabled,
+QDateTimeEdit::up-button:disabled, QDateTimeEdit::down-button:disabled
+{
+	background-color: #404040;
+	color: #656565;
+	border-color: #051a39;
+
+}
+
+
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed,
+QDoubleSpinBox::up-button:pressed, QDoubleSpinBox::down-button::pressed,
+QDateTimeEdit::up-button:pressed, QDateTimeEdit::down-button::pressed
+{
+    background-color: #979796;
+    border: 1px solid #444444;
+
+}
+
+
+QSpinBox::down-arrow,
+QDoubleSpinBox::down-arrow,
+QDateTimeEdit::down-arrow
+{
+    image: url(://arrow-down.png);
+    width: 7px;
+
+}
+
+
+QSpinBox::up-arrow,
+QDoubleSpinBox::up-arrow,
+QDateTimeEdit::up-arrow
+{
+    image: url(://arrow-up.png);
+    width: 7px;
+
+}
+
+
+/*-----QLineEdit-----*/
 QLineEdit
 {
-font-family:century-gothic;
-background:transparent;
-border:none;
-border-bottom:2px solid #717072;
+	background-color: #000000;
+	color: #00ff00;
+	font-weight: bold;
+    border: 1px solid #333333;
+	padding: 4px;
+
 }
-QPushButton:hover
+
+
+QLineEdit:hover
 {
-color:#333;
-background:#49ebff;
-background:rgb(251,187,200,241);
+    border: 1px solid #00ff00;
+
 }
+
+
+QLineEdit::disabled
+{
+	background-color: #404040;
+	color: #656565;
+	border-width: 1px;
+	border-color: #051a39;
+	padding: 2px;
+
+}
+
+
+/*-----QTextEdit-----*/
+QTextEdit
+{
+	background-color: #808080;
+	color: #fff;
+	border: 1px groove #333333;
+
+}
+
+
+QTextEdit::disabled
+{
+	background-color: #404040;
+	color: #656565;
+	border-color: #051a39;
+
+}
+
+
+/*-----QGroupBox-----*/
+QGroupBox 
+{
+    border: 1px groove #333333;
+	border-radius: 2px;
+    margin-top: 20px;
+
+}
+
+
+QGroupBox 
+{
+	background-color: qlineargradient(spread:repeat, x1:0.486, y1:0, x2:0.505, y2:1, stop:0.00480769 rgba(170, 169, 169, 255),stop:1 rgba(122, 122, 122, 255));
+	font-weight: bold;
+
+}
+
+
+QGroupBox::title  
+{
+    background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(71, 75, 87, 255),stop:1 rgba(35, 37, 43, 255));
+    color: #ffffff;
+    border: 2px groove #333333;
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 2px;
+
+}
+
+
+QGroupBox::title::disabled
+{
+	background-color: #404040;
+	color: #656565;
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 5px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+
+}
+
+
+/*-----QCheckBox-----*/
+QCheckBox{
+	background-color: transparent;
+	font-weight: bold;
+	color: #fff;
+
+}
+
+
+QCheckBox::indicator
+{
+    color: #b1b1b1;
+    background-color: #323232;
+    border: 2px solid #222222;
+    width: 12px;
+    height: 12px;
+
+}
+
+
+QCheckBox::indicator:checked
+{
+    image:url(://checkbox.png);
+    border: 2px solid #00ff00;
+
+}
+
+
+QCheckBox::indicator:unchecked:hover
+{
+    border: 2px solid #00ff00;
+
+}
+
+
+QCheckBox::disabled
+{
+	color: #656565;
+
+}
+
+
+QCheckBox::indicator:disabled
+{
+	background-color: #656565;
+	color: #656565;
+    border: 1px solid #656565;
+
+}
+
+
+/*-----QRadioButton-----*/
+QRadioButton{
+	background-color: transparent;
+	font-weight: bold;
+	color: #fff;
+
+}
+
+
+QRadioButton::indicator::unchecked
+{ 
+	border: 2px inset #222222; 
+	border-radius: 6px; 
+	background-color:  #323232;
+	width: 9px; 
+	height: 9px; 
+
+}
+
+
+QRadioButton::indicator::unchecked:hover
+{ 
+	border: 2px solid #00ff00; 
+	border-radius: 5px; 
+	background-color:  #323232;
+	width: 9px; 
+	height: 9px; 
+
+}
+
+
+QRadioButton::indicator::checked
+{ 
+	border: 2px inset #222222; 
+	border-radius: 5px; 
+	background-color: #00ff00; 
+	width: 9px; 
+	height: 9px; 
+
+}
+
+
+QRadioButton::disabled
+{
+	color: #656565;
+
+}
+
+
+QRadioButton::indicator:disabled
+{
+	background-color: #656565;
+	color: #656565;
+    border: 2px solid #656565;
+
+}
+
+
+/*-----QTableView &amp; QTableWidget-----*/
 QTableView
 {
-background:#333;
-background:rgba(0,0,0,0.4);
-border-radius:15px;
+    background-color: #808080;
+    border: 1px groove #333333;
+    color: #f0f0f0;
+	font-weight: bold;
+    gridline-color: #333333;
+    outline : 0;
+
 }
-QMainWindow
+
+
+QTableView::disabled
 {
-background:rgb(6,184,233);
-}</string>
+    background-color: #242526;
+    border: 1px solid #32414B;
+    color: #656565;
+    gridline-color: #656565;
+    outline : 0;
+
+}
+
+
+QTableView::item:hover 
+{
+    background-color: #484c58;
+    color: #f0f0f0;
+
+}
+
+
+QTableView::item:selected 
+{
+    background-color: #484c58;
+    border: 2px groove #00ff00;
+    color: #F0F0F0;
+
+}
+
+
+QTableView::item:selected:disabled
+{
+    background-color: #1a1b1c;
+    border: 2px solid #525251;
+    color: #656565;
+
+}
+
+
+QTableCornerButton::section
+{
+    background-color: #282830;
+
+}
+
+
+QHeaderView::section
+{
+    background-color: #282830;
+    color: #fff;
+	font-weight: bold;
+    text-align: left;
+	padding: 4px;
+	
+}
+
+
+QHeaderView::section:disabled
+{
+    background-color: #525251;
+    color: #656565;
+
+}
+
+
+QHeaderView::section:checked
+{
+    background-color: #00ff00;
+
+}
+
+
+QHeaderView::section:checked:disabled
+{
+    color: #656565;
+    background-color: #525251;
+
+}
+
+
+QHeaderView::section::vertical::first,
+QHeaderView::section::vertical::only-one
+{
+    border-top: 0px;
+
+}
+
+
+QHeaderView::section::vertical
+{
+    border-top: 0px;
+
+}
+
+
+QHeaderView::section::horizontal::first,
+QHeaderView::section::horizontal::only-one
+{
+    border-left: 0px;
+
+}
+
+
+QHeaderView::section::horizontal
+{
+    border-left: 0px;
+
+}
+
+
+/*-----QTabWidget-----*/
+QTabBar::tab
+{
+	background-color: transparent;
+	color: #ffffff;
+	font-weight: bold;
+	width: 80px;
+	height: 9px;
+	
+}
+
+
+QTabBar::tab:disabled
+{
+	background-color: transparent;
+	color: #656565;
+
+}
+
+
+QTabWidget::pane 
+{
+	background-color: transparent;
+	color: #ffffff;
+	border: 1px groove #333333;
+
+}
+
+
+QTabBar::tab:selected
+{
+    background-color: #484c58;
+	color: #ffffff;
+	border: 1px groove #333333;
+	border-bottom: 0px;
+
+}
+
+
+QTabBar::tab:selected:disabled
+{
+	background-color: #404040;
+	color: #656565;
+
+}
+
+
+QTabBar::tab:!selected 
+{
+    background-color: #a3a7b2;
+
+}
+
+
+QTabBar::tab:!selected:hover 
+{
+    background-color: #484c58;
+
+}
+
+
+QTabBar::tab:top:!selected 
+{
+    margin-top: 1px;
+
+}
+
+
+QTabBar::tab:bottom:!selected 
+{
+    margin-bottom: 3px;
+
+}
+
+
+QTabBar::tab:top, QTabBar::tab:bottom 
+{
+    min-width: 8ex;
+    margin-right: -1px;
+    padding: 5px 10px 5px 10px;
+
+}
+
+
+QTabBar::tab:top:selected 
+{
+    border-bottom-color: none;
+
+}
+
+
+QTabBar::tab:bottom:selected 
+{
+    border-top-color: none;
+
+}
+
+
+QTabBar::tab:top:last, QTabBar::tab:bottom:last,
+QTabBar::tab:top:only-one, QTabBar::tab:bottom:only-one 
+{
+    margin-right: 0;
+
+}
+
+
+QTabBar::tab:left:!selected 
+{
+    margin-right: 2px;
+
+}
+
+
+QTabBar::tab:right:!selected
+{
+    margin-left: 2px;
+
+}
+
+
+QTabBar::tab:left, QTabBar::tab:right 
+{
+    min-height: 15ex;
+    margin-bottom: -1px;
+    padding: 10px 5px 10px 5px;
+
+}
+
+
+QTabBar::tab:left:selected 
+{
+    border-left-color: none;
+
+}
+
+
+QTabBar::tab:right:selected 
+{
+    border-right-color: none;
+
+}
+
+
+QTabBar::tab:left:last, QTabBar::tab:right:last,
+QTabBar::tab:left:only-one, QTabBar::tab:right:only-one 
+{
+    margin-bottom: 0;
+
+}
+
+
+/*-----QSlider-----*/
+QSlider{
+	background-color: transparent;
+
+}
+
+
+QSlider::groove:horizontal 
+{
+	background-color: transparent;
+	height: 6px;
+
+}
+
+
+QSlider::sub-page:horizontal 
+{
+	background-color: qlineargradient(spread:reflect, x1:1, y1:0, x2:1, y2:1, stop:0.00480769 rgba(201, 201, 201, 255),stop:1 rgba(72, 72, 72, 255));
+	border: 1px solid #000;
+
+}
+
+
+QSlider::add-page:horizontal 
+{
+	background-color: #404040;
+	border: 1px solid #000; 
+
+}
+
+
+QSlider::handle:horizontal 
+{
+	background-color: qlineargradient(spread:reflect, x1:1, y1:0, x2:1, y2:1, stop:0.00480769 rgba(201, 201, 201, 255),stop:1 rgba(72, 72, 72, 255));
+	border: 1px solid #000; 
+	width: 12px;
+	margin-top: -6px;
+	margin-bottom: -6px;
+
+}
+
+
+QSlider::handle:horizontal:hover 
+{
+	background-color: #808080;
+
+}
+
+
+QSlider::sub-page:horizontal:disabled 
+{
+	background-color: #bbb;
+	border-color: #999;
+
+}
+
+
+QSlider::add-page:horizontal:disabled 
+{
+	background-color: #eee;
+	border-color: #999;
+
+}
+
+
+QSlider::handle:horizontal:disabled 
+{
+	background-color: #eee;
+	border: 1px solid #aaa;
+
+}
+
+
+QSlider::groove:vertical 
+{
+	background-color: transparent;
+	width: 6px;
+
+}
+
+
+QSlider::sub-page:vertical 
+{
+	background-color: qlineargradient(spread:reflect, x1:0, y1:0.483, x2:1, y2:0.517, stop:0.00480769 rgba(201, 201, 201, 255),stop:1 rgba(72, 72, 72, 255));
+	border: 1px solid #000;
+
+}
+
+
+QSlider::add-page:vertical 
+{
+	background-color: #404040;
+	border: 1px solid #000;
+
+}
+
+
+QSlider::handle:vertical 
+{
+	background-color: qlineargradient(spread:reflect, x1:0, y1:0.483, x2:1, y2:0.517, stop:0.00480769 rgba(201, 201, 201, 255),stop:1 rgba(72, 72, 72, 255));
+	border: 1px solid #000;
+	height: 12px;
+	margin-left: -6px;
+	margin-right: -6px;
+
+}
+
+
+QSlider::handle:vertical:hover 
+{
+	background-color: #808080;
+
+}
+
+
+QSlider::sub-page:vertical:disabled 
+{
+	background-color: #bbb;
+	border-color: #999;
+
+}
+
+
+QSlider::add-page:vertical:disabled 
+{
+	background-color: #eee;
+	border-color: #999;
+
+}
+
+
+QSlider::handle:vertical:disabled 
+{
+	background-color: #eee;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+
+}
+
+
+/*-----QDial-----*/
+QDial
+{
+	background-color: #600000;
+
+}
+
+
+QDial::disabled
+{
+	background-color: #404040;
+
+}
+
+
+/*-----QScrollBar-----*/
+QScrollBar:horizontal
+{
+    border: 1px solid #222222;
+    background-color: #63676d;
+    height: 18px;
+    margin: 0px 18px 0 18px;
+
+}
+
+
+QScrollBar::handle:horizontal
+{
+    background-color: #a6acb3;
+	border: 1px solid #656565;
+	border-radius: 2px;
+    min-height: 20px;
+
+}
+
+
+QScrollBar::add-line:horizontal
+{
+    border: 1px solid #1b1b19;
+    background-color: #a6acb3;
+    width: 18px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+
+}
+
+
+QScrollBar::sub-line:horizontal
+{
+    border: 1px solid #1b1b19;
+    background-color: #a6acb3;
+    width: 18px;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+
+}
+
+
+QScrollBar::right-arrow:horizontal
+{
+    image: url(://arrow-right.png);
+    width: 8px;
+    height: 8px;
+
+}
+
+
+QScrollBar::left-arrow:horizontal
+{
+    image: url(://arrow-left.png);
+    width: 8px;
+    height: 8px;
+
+}
+
+
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
+{
+    background: none;
+
+}
+
+
+QScrollBar:vertical
+{
+    background-color: #63676d;
+    width: 18px;
+    margin: 18px 0 18px 0;
+    border: 1px solid #222222;
+
+}
+
+
+QScrollBar::handle:vertical
+{
+    background-color: #a6acb3;
+	border: 1px solid #656565;
+	border-radius: 2px;
+    min-height: 20px;
+
+}
+
+
+QScrollBar::add-line:vertical
+{
+    border: 1px solid #1b1b19;
+    background-color: #a6acb3;
+    height: 18px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+
+}
+
+
+
+QScrollBar::sub-line:vertical
+{
+    border: 1px solid #1b1b19;
+    background-color: #a6acb3;
+    height: 18px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+
+}
+
+
+QScrollBar::up-arrow:vertical
+{
+    image: url(://arrow-up.png);
+    width: 8px;
+    height: 8px;
+
+}
+
+
+QScrollBar::down-arrow:vertical
+{
+    image: url(://arrow-down.png);
+    width: 8px;
+    height: 8px;
+
+}
+
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
+{
+    background: none;
+
+}
+
+
+/*-----QProgressBar-----*/
+QProgressBar
+{
+	background-color: #000;
+	color: #00ff00;
+	font-weight: bold;
+	border: 0px groove #000;
+	border-radius: 10px;
+	text-align: center;
+
+}
+
+
+QProgressBar:disabled
+{
+	background-color: #404040;
+	color: #656565;
+	border-color: #051a39;
+	border: 1px solid #000;
+	border-radius: 10px;
+	text-align: center;
+
+}
+
+
+QProgressBar::chunk {
+	background-color: #ffaf02;
+	border: 0px;
+	border-radius: 10px;
+	color: #000;
+
+}
+
+
+QProgressBar::chunk:disabled {
+	background-color: #333;
+	border: 0px;
+	border-radius: 10px;
+	color: #656565;
+}
+
+
+/*-----QStatusBar-----*/
+QStatusBar
+{
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(102, 115, 140, 255),stop:1 rgba(56, 63, 77, 255));
+	color: #ffffff;
+	border-color: #051a39;
+	font-weight: bold;
+
+}
+QFrame
+{
+color: #ffffff;
+background:transparent;
+border:none;
+}
+QTabWidget
+{ background:transparent;
+ }
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>931</width>
-      <height>481</height>
+      <width>951</width>
+      <height>491</height>
      </rect>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
+    <property name="documentMode">
+     <bool>true</bool>
+    </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
-      <string>gestion equipements</string>
+      <string>equipements</string>
      </attribute>
      <widget class="QTabWidget" name="tabWidget_2">
       <property name="geometry">
        <rect>
         <x>30</x>
         <y>40</y>
-        <width>711</width>
+        <width>901</width>
         <height>421</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
+      </property>
+      <property name="documentMode">
+       <bool>true</bool>
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -87,9 +1298,9 @@ background:rgb(6,184,233);
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>60</y>
-          <width>361</width>
-          <height>321</height>
+          <y>40</y>
+          <width>251</width>
+          <height>271</height>
          </rect>
         </property>
         <property name="title">
@@ -111,7 +1322,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>50</y>
            <width>113</width>
            <height>20</height>
@@ -134,7 +1345,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_2">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>110</y>
            <width>113</width>
            <height>20</height>
@@ -157,7 +1368,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_3">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>140</y>
            <width>113</width>
            <height>20</height>
@@ -180,7 +1391,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_4">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>170</y>
            <width>113</width>
            <height>20</height>
@@ -190,7 +1401,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_5">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>80</y>
            <width>113</width>
            <height>20</height>
@@ -215,7 +1426,7 @@ background:rgb(6,184,233);
           <rect>
            <x>20</x>
            <y>230</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -228,7 +1439,7 @@ background:rgb(6,184,233);
           <rect>
            <x>120</x>
            <y>230</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -247,7 +1458,7 @@ background:rgb(6,184,233);
          <rect>
           <x>30</x>
           <y>40</y>
-          <width>551</width>
+          <width>571</width>
           <height>291</height>
          </rect>
         </property>
@@ -259,7 +1470,7 @@ background:rgb(6,184,233);
           <rect>
            <x>20</x>
            <y>240</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -270,7 +1481,7 @@ background:rgb(6,184,233);
         <widget class="QRadioButton" name="radioButton_3">
          <property name="geometry">
           <rect>
-           <x>270</x>
+           <x>260</x>
            <y>240</y>
            <width>82</width>
            <height>17</height>
@@ -283,7 +1494,7 @@ background:rgb(6,184,233);
         <widget class="QRadioButton" name="radioButton_2">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>190</x>
            <y>240</y>
            <width>82</width>
            <height>17</height>
@@ -296,7 +1507,7 @@ background:rgb(6,184,233);
         <widget class="QRadioButton" name="radioButton">
          <property name="geometry">
           <rect>
-           <x>110</x>
+           <x>130</x>
            <y>240</y>
            <width>82</width>
            <height>17</height>
@@ -311,7 +1522,7 @@ background:rgb(6,184,233);
           <rect>
            <x>20</x>
            <y>40</y>
-           <width>511</width>
+           <width>541</width>
            <height>192</height>
           </rect>
          </property>
@@ -319,9 +1530,9 @@ background:rgb(6,184,233);
         <widget class="QPushButton" name="pushButton_23">
          <property name="geometry">
           <rect>
-           <x>370</x>
+           <x>360</x>
            <y>240</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -332,9 +1543,9 @@ background:rgb(6,184,233);
         <widget class="QPushButton" name="pushButton_24">
          <property name="geometry">
           <rect>
-           <x>450</x>
+           <x>460</x>
            <y>240</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -353,8 +1564,8 @@ background:rgb(6,184,233);
          <rect>
           <x>30</x>
           <y>40</y>
-          <width>361</width>
-          <height>311</height>
+          <width>241</width>
+          <height>271</height>
          </rect>
         </property>
         <property name="title">
@@ -376,7 +1587,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_6">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>50</y>
            <width>113</width>
            <height>20</height>
@@ -399,7 +1610,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_7">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>110</y>
            <width>113</width>
            <height>20</height>
@@ -422,7 +1633,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_8">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>140</y>
            <width>113</width>
            <height>20</height>
@@ -445,7 +1656,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_9">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>170</y>
            <width>113</width>
            <height>20</height>
@@ -455,7 +1666,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_10">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>80</y>
            <width>113</width>
            <height>20</height>
@@ -480,7 +1691,7 @@ background:rgb(6,184,233);
           <rect>
            <x>20</x>
            <y>230</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -493,7 +1704,7 @@ background:rgb(6,184,233);
           <rect>
            <x>120</x>
            <y>230</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -510,10 +1721,10 @@ background:rgb(6,184,233);
        <widget class="QGroupBox" name="groupBox_3">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>50</y>
-          <width>361</width>
-          <height>181</height>
+          <x>30</x>
+          <y>40</y>
+          <width>371</width>
+          <height>121</height>
          </rect>
         </property>
         <property name="title">
@@ -547,7 +1758,7 @@ background:rgb(6,184,233);
           <rect>
            <x>160</x>
            <y>60</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -558,9 +1769,9 @@ background:rgb(6,184,233);
         <widget class="QPushButton" name="pushButton_7">
          <property name="geometry">
           <rect>
-           <x>250</x>
+           <x>260</x>
            <y>60</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -574,19 +1785,22 @@ background:rgb(6,184,233);
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>gestion maintenances</string>
+      <string>maintenances</string>
      </attribute>
      <widget class="QTabWidget" name="tabWidget_3">
       <property name="geometry">
        <rect>
         <x>30</x>
         <y>40</y>
-        <width>871</width>
+        <width>901</width>
         <height>421</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
+      </property>
+      <property name="documentMode">
+       <bool>true</bool>
       </property>
       <widget class="QWidget" name="tab_7">
        <attribute name="title">
@@ -597,7 +1811,7 @@ background:rgb(6,184,233);
          <rect>
           <x>30</x>
           <y>40</y>
-          <width>361</width>
+          <width>261</width>
           <height>341</height>
          </rect>
         </property>
@@ -620,7 +1834,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_18">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>50</y>
            <width>113</width>
            <height>20</height>
@@ -643,7 +1857,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_19">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>110</y>
            <width>113</width>
            <height>20</height>
@@ -655,8 +1869,8 @@ background:rgb(6,184,233);
           <rect>
            <x>20</x>
            <y>140</y>
-           <width>47</width>
-           <height>13</height>
+           <width>81</width>
+           <height>16</height>
           </rect>
          </property>
          <property name="text">
@@ -666,7 +1880,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_20">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>140</y>
            <width>113</width>
            <height>20</height>
@@ -689,7 +1903,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_21">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>170</y>
            <width>113</width>
            <height>20</height>
@@ -699,7 +1913,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_22">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>80</y>
            <width>113</width>
            <height>20</height>
@@ -711,8 +1925,8 @@ background:rgb(6,184,233);
           <rect>
            <x>20</x>
            <y>80</y>
-           <width>47</width>
-           <height>13</height>
+           <width>81</width>
+           <height>16</height>
           </rect>
          </property>
          <property name="text">
@@ -724,7 +1938,7 @@ background:rgb(6,184,233);
           <rect>
            <x>20</x>
            <y>310</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -737,7 +1951,7 @@ background:rgb(6,184,233);
           <rect>
            <x>120</x>
            <y>310</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -748,7 +1962,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_23">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>200</y>
            <width>113</width>
            <height>20</height>
@@ -774,7 +1988,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_24">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>230</y>
            <width>113</width>
            <height>20</height>
@@ -797,7 +2011,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_25">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>260</y>
            <width>113</width>
            <height>20</height>
@@ -829,9 +2043,9 @@ background:rgb(6,184,233);
        <widget class="QGroupBox" name="groupBox_7">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>831</width>
+          <x>30</x>
+          <y>40</y>
+          <width>861</width>
           <height>291</height>
          </rect>
         </property>
@@ -841,9 +2055,9 @@ background:rgb(6,184,233);
         <widget class="QPushButton" name="pushButton_12">
          <property name="geometry">
           <rect>
-           <x>10</x>
+           <x>20</x>
            <y>240</y>
-           <width>75</width>
+           <width>90</width>
            <height>21</height>
           </rect>
          </property>
@@ -856,7 +2070,7 @@ background:rgb(6,184,233);
           <rect>
            <x>10</x>
            <y>30</y>
-           <width>811</width>
+           <width>841</width>
            <height>192</height>
           </rect>
          </property>
@@ -864,9 +2078,9 @@ background:rgb(6,184,233);
         <widget class="QPushButton" name="pushButton_8">
          <property name="geometry">
           <rect>
-           <x>750</x>
+           <x>740</x>
            <y>240</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -877,9 +2091,9 @@ background:rgb(6,184,233);
         <widget class="QPushButton" name="pushButton_25">
          <property name="geometry">
           <rect>
-           <x>90</x>
+           <x>130</x>
            <y>240</y>
-           <width>75</width>
+           <width>90</width>
            <height>21</height>
           </rect>
          </property>
@@ -890,7 +2104,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_40">
          <property name="geometry">
           <rect>
-           <x>170</x>
+           <x>230</x>
            <y>240</y>
            <width>113</width>
            <height>20</height>
@@ -900,7 +2114,7 @@ background:rgb(6,184,233);
         <widget class="QComboBox" name="comboBox">
          <property name="geometry">
           <rect>
-           <x>290</x>
+           <x>350</x>
            <y>240</y>
            <width>69</width>
            <height>20</height>
@@ -931,10 +2145,10 @@ background:rgb(6,184,233);
        <widget class="QGroupBox" name="groupBox_5">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>30</x>
           <y>40</y>
-          <width>361</width>
-          <height>351</height>
+          <width>261</width>
+          <height>341</height>
          </rect>
         </property>
         <property name="title">
@@ -943,7 +2157,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_13">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>120</x>
            <y>50</y>
            <width>113</width>
            <height>20</height>
@@ -953,7 +2167,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_14">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>120</x>
            <y>110</y>
            <width>113</width>
            <height>20</height>
@@ -963,7 +2177,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_15">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>120</x>
            <y>140</y>
            <width>113</width>
            <height>20</height>
@@ -973,7 +2187,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_16">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>120</x>
            <y>170</y>
            <width>113</width>
            <height>20</height>
@@ -983,7 +2197,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_17">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>120</x>
            <y>80</y>
            <width>113</width>
            <height>20</height>
@@ -995,7 +2209,7 @@ background:rgb(6,184,233);
           <rect>
            <x>20</x>
            <y>310</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -1008,7 +2222,7 @@ background:rgb(6,184,233);
           <rect>
            <x>120</x>
            <y>310</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -1019,7 +2233,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_26">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>120</x>
            <y>230</y>
            <width>113</width>
            <height>20</height>
@@ -1029,7 +2243,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_27">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>120</x>
            <y>260</y>
            <width>113</width>
            <height>20</height>
@@ -1042,7 +2256,7 @@ background:rgb(6,184,233);
         <widget class="QLineEdit" name="lineEdit_28">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>120</x>
            <y>200</y>
            <width>113</width>
            <height>20</height>
@@ -1057,8 +2271,8 @@ background:rgb(6,184,233);
           <rect>
            <x>20</x>
            <y>80</y>
-           <width>47</width>
-           <height>13</height>
+           <width>91</width>
+           <height>16</height>
           </rect>
          </property>
          <property name="text">
@@ -1083,8 +2297,8 @@ background:rgb(6,184,233);
           <rect>
            <x>20</x>
            <y>140</y>
-           <width>47</width>
-           <height>13</height>
+           <width>91</width>
+           <height>16</height>
           </rect>
          </property>
          <property name="text">
@@ -1168,7 +2382,7 @@ background:rgb(6,184,233);
           <x>30</x>
           <y>40</y>
           <width>361</width>
-          <height>181</height>
+          <height>121</height>
          </rect>
         </property>
         <property name="title">
@@ -1200,9 +2414,9 @@ background:rgb(6,184,233);
         <widget class="QPushButton" name="pushButton_9">
          <property name="geometry">
           <rect>
-           <x>250</x>
+           <x>260</x>
            <y>60</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -1215,7 +2429,7 @@ background:rgb(6,184,233);
           <rect>
            <x>160</x>
            <y>60</y>
-           <width>75</width>
+           <width>90</width>
            <height>23</height>
           </rect>
          </property>
@@ -1225,16 +2439,60 @@ background:rgb(6,184,233);
         </widget>
        </widget>
       </widget>
+      <widget class="QWidget" name="tab_11">
+       <attribute name="title">
+        <string>Statistiques</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_9">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>40</y>
+          <width>461</width>
+          <height>331</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Statistique</string>
+        </property>
+        <widget class="QFrame" name="horizontalFrame">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>40</y>
+           <width>381</width>
+           <height>271</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout"/>
+        </widget>
+       </widget>
+      </widget>
      </widget>
     </widget>
    </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-2</y>
+      <width>981</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>label_13</zorder>
+   <zorder>tabWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>963</width>
+     <width>979</width>
      <height>21</height>
     </rect>
    </property>
