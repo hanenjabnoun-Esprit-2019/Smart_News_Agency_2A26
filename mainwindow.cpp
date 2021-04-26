@@ -1,24 +1,42 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include<QMessageBox>
+#include <QMessageBox>
 #include <QPixmap>
 #include "smtp.h"
 #include <QtPrintSupport/QPrinter>
 #include <QFileDialog>
 #include <QTextDocument>
+#include <QtCharts>
+#include <QChartView>
+#include <QPieSeries>
+#include <QSystemTrayIcon>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->tableView->setModel(tmpe.afficher_e()); // afficher les employés
-     ui->tableView_2->setModel(tmpd.afficher_d());  // afficher les departements
-     ui->tableView_3->setModel(tmpe.stat());  //voir statistique
-     connect(ui->lineEdit_8,SIGNAL(textChanged(QString)),this,SLOT(affrech()));
-     QPixmap pix("C:/Users/ASUS/Desktop/back1.jpg");
-     ui->label_33->setPixmap(pix);
-     ui->pushButton_18->hide();
-     ui->comboBox->hide();
+    ui->tableView_2->setModel(tmpm.afficher());
+     ui->tableView->setModel(tmpm2.afficher());
+     QPieSeries *series = new QPieSeries();
+        QSqlQuery q("select type,count(*) from publicite group by type");
+
+
+         while(q.next())
+         {series->append(q.value(0).toString()+": "+q.value(1).toString(),q.value(1).toInt());}
+        QChart *chart = new QChart();
+        chart->addSeries(series);
+        chart->setTitle("Statistiques");
+        chart->setBackgroundBrush(Qt::transparent);
+        QChartView *chartview = new QChartView(chart);
+        chartview->setRenderHint(QPainter::Antialiasing);
+        chartview->setParent(ui->horizontalFrame);
+        chartview->resize(400,300);
+
+        chart->setAnimationOptions(QChart::AllAnimations);
+        chart->legend()->setVisible(true);
+        chart->legend()->setAlignment(Qt::AlignRight);
+        series->setLabelsVisible(true);
+
 
 }
 
@@ -28,344 +46,257 @@ MainWindow::~MainWindow()
 }
 
 
-
-
-
-
-void MainWindow::on_pushButton_clicked() //ajout_emp
+void MainWindow::on_pushButton_12_clicked()
 {
-    int id=ui->lineEdit->text().toInt ();
-    QString nom =ui->lineEdit_2->text();
-    QString prenom =ui->lineEdit_3->text();
-     QString role=ui->lineEdit_4->text();
-     int salaire =ui->lineEdit_5->text().toInt();
-       QString email =ui->lineEdit_6->text();
-       int numero=ui->lineEdit_7->text().toInt();
-       int id_dep=ui->lineEdit_24->text().toInt ();
-       employe  e (id , nom , prenom , role , salaire ,email , numero ,id_dep);
-       bool test= e.ajouter_e();
-       if(test)
+    int id=ui->lineEdit_14->text().toInt();
+    QString nom=ui->lineEdit_23->text();
+    QString type=ui->lineEdit_15->text();
+    QString domaine=ui->lineEdit_16->text();
+    QString duree=ui->lineEdit_17->text();
 
-       {  ui->tableView->setModel(tmpe.afficher_e());
-           ui->tableView_3->setModel(tmpe.stat());
-           Smtp* smtp = new Smtp("ahmed.harrabi@esprit.tn", "ahmed123", "smtp.gmail.com", 465);
-              connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
-              smtp->sendMail("ahmed.harrabi@esprit.tn",ui->lineEdit_6->text(), "verification","vous étes inscris...");
-
-          QSystemTrayIcon * notifier=new QSystemTrayIcon(this);
-          notifier->setIcon(QIcon(""));
-          notifier->show();
-          notifier->showMessage("Employé ajouté","OK",QSystemTrayIcon::Information,10000);   //notifcation
-
-
-   }
-       else
-       {
-       QSystemTrayIcon * notifier=new QSystemTrayIcon(this);
-       notifier->setIcon(QIcon(""));
-       notifier->show();
-       notifier->showMessage("Employé non ajouté","OK",QSystemTrayIcon::Critical,10000); }  //notifcation
-
-}
-
-
-
-
-
-
-
-
-
-
-void MainWindow::on_pushButton_7_clicked() //supp_emp
-{
-    int id=ui->lineEdit_16->text().toInt();
-    if (tmpe.rechercher_e(id))
-    {
-  bool test=  tmpe.supprimer_e(id);
-
+    publicite p(id,nom,type,domaine,duree);
+    bool test=p.ajouter();
     if(test)
+    { ui->tableView_2->setModel(tmpm.afficher());
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("Publicité ajouté","Succés",QSystemTrayIcon::Information,10000);
 
-    {
-        ui->tableView_3->setModel(tmpe.stat());
-        ui->tableView->setModel(tmpe.afficher_e());
-        QMessageBox::information(nullptr, QObject::tr("employe supprimé "),
-                    QObject::tr(" successful ! bravo \n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
 
 }
     else
-        QMessageBox::critical(nullptr, QObject::tr("employe non supprimé"),
-                    QObject::tr(" failed ! \n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-}
-    else QMessageBox::critical(nullptr, QObject::tr("employe introuvable"),
-                               QObject::tr(" failed ! \n"
-                                           "Click Cancel to exit."), QMessageBox::Cancel);
-
-}
-
-
-
-
-
-
-
-
-
-
-void MainWindow::on_pushButton_4_clicked() //mod_emp
-{
-    int id=ui->lineEdit_15->text().toInt ();
-    QString nom =ui->lineEdit_14->text();
-    QString prenom =ui->lineEdit_9->text();
-     QString role=ui->lineEdit_13->text();
-     int salaire =ui->lineEdit_12->text().toInt();
-       QString email =ui->lineEdit_10->text();
-       int numero=ui->lineEdit_11->text().toInt();
-       employe  e (id , nom , prenom , role , salaire ,email , numero,0 );
-       if (tmpe.rechercher_e(id))
-       {
-        bool test= e.modifier_e(id);
-
-        if(test)
-        {  ui->tableView_3->setModel(tmpe.stat());
-            ui->tableView->setModel(tmpe.afficher_e());
-            QMessageBox::information(nullptr, QObject::tr("employe modifié"),
-                        QObject::tr(" successful ! bravo \n"
-                                    "Click Cancel to exit."), QMessageBox::Cancel);
-
-    }
-        else
-            QMessageBox::critical(nullptr, QObject::tr("employe non modifié "),
-                        QObject::tr(" failed ! \n"
-                                    "Click Cancel to exit."), QMessageBox::Cancel);
-    }
-        else QMessageBox::critical(nullptr, QObject::tr("employe introuvable"),
-                                   QObject::tr(" failed ! \n"
-                                               "Click Cancel to exit."), QMessageBox::Cancel);
-
-    }
-
-
-
-
-
-
-
-void MainWindow::on_pushButton_10_clicked() //ajout_dep
-{
-    int id=ui->lineEdit_23->text().toInt ();
-    QString nom =ui->lineEdit_22->text();
-    QString type =ui->lineEdit_17->text();
-     int nomb_pers =ui->lineEdit_19->text().toInt();
-       QString nom_chef =ui->lineEdit_20->text();
-       int nbre_empl=ui->lineEdit_18->text().toInt();
-       departement d(id , nom , type ,nomb_pers, nom_chef ,nbre_empl);
-       bool test= d.ajouter_d();
-       if(test)
-       {  ui->tableView_2->setModel(tmpd.afficher_d());
-           QMessageBox::information(nullptr, QObject::tr("departement ajouté "),
-                       QObject::tr(" successful ! bravo \n"
-                                   "Click Cancel to exit."), QMessageBox::Cancel);
-
-   }
-       else
-           QMessageBox::critical(nullptr, QObject::tr("departement non ajouté"),
-                       QObject::tr(" failed ! \n"
-                                   "Click Cancel to exit."), QMessageBox::Cancel);
-}
-
-
-
-
-
-
-
-void MainWindow::on_pushButton_15_clicked()  //supp_dep
-{
-    int id=ui->lineEdit_32->text().toInt();
-    if (tmpd.rechercher_d(id))
     {
-  bool test=  tmpd.supprimer_d(id);
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("Publicité non ajouté","Echéc",QSystemTrayIcon::Critical,10000);
+    }
 
+
+
+
+}
+
+void MainWindow::on_pushButton_19_clicked()
+{
+    int id=ui->lineEdit_25->text().toInt();
+    if(tmpm.rechercher(id))
+    {
+   bool test=tmpm.supprimer(id);
     if(test)
-    {  ui->tableView_2->setModel(tmpd.afficher_d());
-        QMessageBox::information(nullptr, QObject::tr("departement supprimé "),
-                    QObject::tr(" successful ! bravo \n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
+    { ui->tableView_2->setModel(tmpm.afficher());
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("Publicité supprimé","Succés",QSystemTrayIcon::Information,10000);
 
 }
     else
-        QMessageBox::critical(nullptr, QObject::tr("departement non supprimé"),
-                    QObject::tr(" failed ! \n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-}
-    else QMessageBox::critical(nullptr, QObject::tr("departementintrouvable"),
-                               QObject::tr(" failed ! \n"
-                                           "Click Cancel to exit."), QMessageBox::Cancel);
-
-}
-
-
-
-
-
-
-
-
-void MainWindow::on_pushButton_13_clicked() //modifier_dep
-{
-    int id=ui->lineEdit_31->text().toInt ();
-    QString nom =ui->lineEdit_30->text();
-    QString type =ui->lineEdit_25->text();
-    int nomb_pers=ui->lineEdit_29->text().toInt();
-       QString nom_chef =ui->lineEdit_21->text();
-       int nbre_empl=ui->lineEdit_26->text().toInt();
-      departement d(id , nom , type ,nomb_pers, nom_chef ,nbre_empl);
-       if (tmpd.rechercher_d(id))
-       {
-        bool test= d.modifier_d(id);
-
-        if(test)
-        {  ui->tableView_2->setModel(tmpd.afficher_d());
-            QMessageBox::information(nullptr, QObject::tr("departement modifié"),
-                        QObject::tr(" successful ! bravo \n"
-                                    "Click Cancel to exit."), QMessageBox::Cancel);
-
-    }
-        else
-            QMessageBox::critical(nullptr, QObject::tr("departement non modifié "),
-                        QObject::tr(" failed ! \n"
-                                    "Click Cancel to exit."), QMessageBox::Cancel);
-    }
-        else QMessageBox::critical(nullptr, QObject::tr("departement introuvable"),
-                                   QObject::tr(" failed ! \n"
-                                               "Click Cancel to exit."), QMessageBox::Cancel);
-
-}
-
-
-
-
-
-
-
-
-
-
-
-void MainWindow::on_pushButton_3_clicked() //recherche emp
-{
-       int id=ui->lineEdit_8->text().toInt ();
-
-ui->tableView->setModel(tmpe.afficher_e_rech(id));
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void MainWindow::on_pushButton_12_clicked() //tri departement
-{
-    ui->tableView_2->setModel(tmpd.afficher_d_tri());
-}
-
-
-
-
-
-
-
-void MainWindow::on_pushButton_11_clicked()  //actualiser
-{
-    ui->tableView->setModel(tmpe.afficher_e());
-}
-
-
-
-
-
-
-
-
-
-void MainWindow::on_pushButton_17_clicked() //supprimer avec selection
-{
-    int row=ui->tableView->selectionModel()->currentIndex().row();
-    int id=ui->tableView->model()->index(row,0).data().toInt();
-    if (tmpe.rechercher_e(id))
     {
-  bool test=  tmpe.supprimer_e(id);
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("Publicité non supprimé","Echéc",QSystemTrayIcon::Critical,10000);
+    }
+}
+    else QMessageBox::critical(nullptr, QObject::tr("publicié introuvable"),
+                               QObject::tr("failed.\n"
+                                           "Click Cancel to exit."), QMessageBox::Cancel);
+}
 
+void MainWindow::on_pushButton_17_clicked()
+{   ui->tableView_2->setModel(tmpm.afficher());
+    int id=ui->lineEdit_18->text().toInt();
+    QString nom=ui->lineEdit_24->text();
+    QString type=ui->lineEdit_21->text();
+    QString domaine=ui->lineEdit_22->text();
+    QString duree=ui->lineEdit_20->text();
+
+    publicite p(id,nom,type,domaine,duree);
+    p.modifier(id);
+    bool test=p.modifier(id);
     if(test)
-    {  ui->tableView->setModel(tmpe.afficher_e());
-        QMessageBox::information(nullptr, QObject::tr("employé supprimé "),
-                    QObject::tr(" successful ! bravo \n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
+    { ui->tableView_2->setModel(tmpm.afficher());
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("Publicité modifié","Succés",QSystemTrayIcon::Information,10000);
 
 }
     else
-        QMessageBox::critical(nullptr, QObject::tr("employé non supprimé"),
-                    QObject::tr(" failed ! \n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
+    {
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("Publicité non modifié","Echéc",QSystemTrayIcon::Critical,10000);
+    }
+
+
+
 }
-    else QMessageBox::critical(nullptr, QObject::tr("employé introuvable"),
-                               QObject::tr(" failed ! \n"
-                                           "Click Cancel to exit."), QMessageBox::Cancel);
-}
 
 
 
 
-void MainWindow::affrech()
+
+
+
+
+
+
+
+
+
+
+void MainWindow::on_pushButton_3_clicked()
 {
+    int id=ui->lineEdit->text().toInt();
+    QString nom=ui->lineEdit_2->text();
+    QString type=ui->lineEdit_3->text();
+    QString duree=ui->lineEdit_4->text();
+    QString offre=ui->lineEdit_5->text();
+    QString adresse=ui->lineEdit_27->text();
+    QString num_tel=ui->lineEdit_28->text();
+    QString profession=ui->lineEdit_26->text();
 
-ui->tableView->setModel(tmpe.afficher_e_rech(ui->lineEdit_8->text().toInt()));
+
+
+    sponsors s(id,nom,type,duree,offre,adresse,num_tel,profession);
+    bool test=s.ajouter();
+    if(test)
+    { ui->tableView->setModel(tmpm2.afficher());
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("sponsor ajouté","Succés",QSystemTrayIcon::Information,10000);
+
+}
+    else
+    {
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("sponsor non ajouté","Echéc",QSystemTrayIcon::Critical,10000);
+    }
+
+
+
 
 }
 
+void MainWindow::on_pushButton_clicked()
+{  ui->tableView->setModel(tmpm2.afficher());
+    int id=ui->lineEdit_8->text().toInt();
+    QString nom=ui->lineEdit_7->text();
+    QString type=ui->lineEdit_9->text();
+    QString duree=ui->lineEdit_10->text();
+    QString offre=ui->lineEdit_6->text();
+    QString adresse=ui->lineEdit_30->text();
+    QString num_tel=ui->lineEdit_31->text();
+    QString profession=ui->lineEdit_29->text();
+
+
+    sponsors s(id,nom,type,duree,offre,adresse,num_tel,profession);
+    s.modifier(id);
+    bool test=s.modifier(id);
+    if(test)
+    { ui->tableView->setModel(tmpm2.afficher());
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("sponsor modifié","Succés",QSystemTrayIcon::Information,10000);
+
+}
+    else
+    {
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("sponsor non modifié","Echéc",QSystemTrayIcon::Critical,10000);
+    }
 
 
 
 
-void MainWindow::on_commandLinkButton_clicked() //?
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{ int id=ui->lineEdit_12->text().toInt();
+    if(tmpm2.rechercher(id))
+    {
+   bool test=tmpm2.supprimer(id);
+    if(test)
+    { ui->tableView->setModel(tmpm2.afficher());
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("sponsor supprimé","Succés",QSystemTrayIcon::Information,10000);
+
+}
+    else
+    {
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("sponsor non supprimé","Echéc",QSystemTrayIcon::Critical,10000);
+    }
+}
+    else {
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("sponsor introuvable","Echec",QSystemTrayIcon::Critical,10000);
+    }
+
+}
+
+void MainWindow::on_pushButton_15_clicked()
 {
-    ui->tabWidget_3->setCurrentIndex(4);
+     ui->tableView_2->setModel(tmpm.afficher_tri());
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    int row=ui->tableView_2->selectionModel()->currentIndex().row();
+    int id=ui->tableView_2->model()->index(row,0).data().toInt();
+    if(tmpm.rechercher(id))
+    {
+   bool test=tmpm.supprimer(id);
+    if(test)
+    { ui->tableView_2->setModel(tmpm.afficher());
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("Publicité supprimé","Succés",QSystemTrayIcon::Information,10000);
+
+}
+    else
+    {
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("Publicité non supprimé","Echec",QSystemTrayIcon::Critical,10000);
+    }
+}
+    else {
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                notifier->show();
+                                notifier->showMessage("Publicité introuvable","Echec",QSystemTrayIcon::Critical,10000);
+    }
+}
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    int id=ui->lineEdit_19->text().toInt();
+    ui->tableView_2->setModel(tmpm.afficher_rech(id));
 }
 
 void MainWindow::on_pushButton_6_clicked()
 {
-    ui->pushButton_18->show();
-    ui->comboBox->show();
+     ui->tableView_2->setModel(tmpm.afficher());
 }
 
-void MainWindow::on_pushButton_18_clicked()
+void MainWindow::on_pushButton_7_clicked()
 {
-    ui->pushButton_18->hide();
-    ui->comboBox->hide();
-    if(ui->comboBox->currentText()=="Background 1")
-    {QPixmap pix("C:/Users/ASUS/Desktop/back1.jpg");
-        ui->label_33->setPixmap(pix);}
-    if(ui->comboBox->currentText()=="Background 2")
-    {QPixmap pix("C:/Users/ASUS/Desktop/back2.png");
-        ui->label_33->setPixmap(pix);}
-    if(ui->comboBox->currentText()=="Background 3")
-    {QPixmap pix("C:/Users/ASUS/Desktop/back3.jpg");
-        ui->label_33->setPixmap(pix);}
+    QString selon=ui->comboBox->currentText();
+    QString rech=ui->lineEdit_11->text();
+     ui->tableView->setModel(tmpm2.afficherRech(selon,rech));
 }
 
-void MainWindow::on_pushButton_19_clicked()
+void MainWindow::on_pushButton_10_clicked()
+{
+    Smtp* smtp = new Smtp("mariem.gnaoui@esprit.tn", "191JFT1245", "smtp.gmail.com", 465);
+        connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+        smtp->sendMail("mariem.gnaoui@esprit.tn",ui->lineEdit_34->text(), ui->lineEdit_32->text(),ui->lineEdit_33->text());
+}
+
+void MainWindow::on_pushButton_16_clicked()
 {
     QString strStream;
                        QTextStream out(&strStream);
@@ -380,7 +311,7 @@ void MainWindow::on_pushButton_19_clicked()
                                         "<body bgcolor=#ffffff link=#5000A0>\n"
 
                                        //     "<align='right'> " << datefich << "</align>"
-                                        "<center> <H1>Liste des employes</H1></br></br><table border=1 cellspacing=0 cellpadding=2>\n";
+                                        "<center> <H1>Liste des sponsors</H1></br></br><table border=1 cellspacing=0 cellpadding=2>\n";
 
                                     // headers
                                     out << "<thead><tr bgcolor=#f0f0f0> <th>Numero</th>";

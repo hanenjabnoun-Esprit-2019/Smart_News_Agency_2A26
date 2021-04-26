@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql network printsupport charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,12 +13,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     publicite.cpp \
+    smtp.cpp \
     sponsors.cpp
 
 HEADERS += \
     connection.h \
     mainwindow.h \
     publicite.h \
+    smtp.h \
     sponsors.h
 
 FORMS += \
