@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "connection.h"
-#include <QMessageBox>
 #include <QApplication>
+#include <QMessageBox>
 
 int main(int argc, char *argv[])
 {
@@ -20,7 +20,8 @@ int main(int argc, char *argv[])
         QMessageBox::critical(nullptr, QObject::tr("database is not open"),
                     QObject::tr("connection failed.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
-       MainWindow w;
-       w.show();
+    MainWindow w;
+    w.show();
+
     return a.exec();
 }
